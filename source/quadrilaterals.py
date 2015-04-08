@@ -1,72 +1,173 @@
 """
-:mod:`source.source1` -- Example source code
-============================================
+:module source.quadrilaterals
 
-The following example code determines if a set of 3 sides of a triangle is equilateral, scalene or iscoceles
+methods to determine properties about a quadrilateral defined by a list
+of side lengths and a list of angles.
 """
 from source.Turtle import Turtle
+from source.Polygon import Polygon
 
-def get_quadrilateral_type(side_lengths, angles):
+# map to a static method in the Turtle class
+is_connected = Turtle.is_connected
+
+f_equal = Polygon.f_equal
+
+
+# TODO: Move to parent Shape class
+def _is_normal(shape):
     """
-    Determine if the given quadrilateral
+    Returns true if all angles in list are normal
 
-    :param side_lengths:    list or tuple of side lengths
-    :type side_lengths:     tuplse or list
+    :param shape: the shape
+    :return: boolean
+    """
+    return all(f_equal(a, 90.0) for a in shape['angles'])
 
-    :param angles:          list or tuple of angles
-    :type side_lengths:     tuple or list
 
-    :return: "square", "rectangle", "rhombus", "disconnected" or "invalid"
+def _is_convex(shape):
+    """
+    Returns true if all angles are either positive or negative
+
+    :param shape: the shape
+    :return: boolean
+    """
+    angles = shape['angles']
+    return all(a >= 180.0 for a in angles) or all(a <= 180.0 for a in angles)
+
+
+def _is_homogenous(shape):
+    """
+    Returns true if all side lengths are the same
+
+    :param shape: the shape
+    :return: boolean
+    """
+    lengths = shape['sides']
+    return f_equal(max(lengths), min(lengths))
+
+
+def _is_parallelogram(shape):
+    """
+    Returns true if opposite angles are equal
+
+    :param shape: the shape
+    :return: boolean
+    """
+    angles = shape['angles']
+    return (f_equal(angles[0], angles[2]) and
+            f_equal(angles[1], angles[3]))
+
+
+def _is_length_equiopposite(shape):
+    """
+    Returns true if opposite side lengths are equal
+
+    :param shape: the shape
+    :return: boolean
+    """
+    sides = shape['sides']
+    return (f_equal(sides[0], sides[2]) and
+            f_equal(sides[1], sides[3]))
+
+
+def _is_length_equiadjacent(shape):
+    """
+    Returns true if there exist two pairs of adjacent sides that are equal (kitelike)
+
+    :param shape: the shape
+    :return: boolean
+    """
+    sides = shape['sides']
+    return ((f_equal(sides[0], sides[1]) and f_equal(sides[2], sides[3])) or
+            (f_equal(sides[1], sides[2]) and f_equal(sides[3], sides[0])))
+
+
+def _is_disconnected(shape):
+    """
+    Returns true if the path created by the side lengths and angles does not end at the same
+    point at which it started.
+
+    :param shape: the shape
+    :return: boolean
+    """
+    return not is_connected(shape)
+
+
+def get_quadrilateral_type(shape):
+    """
+    Determines the class of a quadrilateral defined by its sides and angles.
+
+    Quadrilateral classification tree (not entirely implemented):
+
+                  Quadrilateral
+                 /     |
+            Complex    |
+                       |
+                     Simple
+                   /   |
+            Concave    |
+                       |
+                     Convex - - - - - - - - - - -.
+                 _/    |    \__                   \
+              _/       |       \__                 \
+            /          |          \                 \
+        Kite        Cyclic      Trapezoid          (Kite)
+            \       /     \       /     \            |
+             \    /        \    /        \           |
+        Cyclic Kite      I. Trap.    Parallelogram   |
+               \            |      /      |    _____/
+                \           |    /        |  /
+                 \      Rectangle     Rhombus
+                  \    /   __________/
+                   \  |  /
+                   Square
+
+    An even more in depth classification tree:
+        www.cut-the-knot.org/Curriculum/Geometry/quadrilaterals1.gif
+
+    :param lengths:    list or tuple of side lengths
+    :type lengths:     tuple or list
+
+    :param angles:     list or tuple of angles
+    :type lengths:     tuple or list
+
+    :return: "concave", "disconnected", "square", "rectangle", "rhombus" or Error
     :rtype: str
     """
+    lengths = shape['sides']
+    if not isinstance(lengths, (tuple, list)):
+        return 'Error: lengths must be list or tuple'
+    if not len(lengths) == 4:
+        return 'Error: invalid number of sides'
+    if not all([n > 0 for n in lengths]):
+        return 'Error: all side lengths must be > 0'
 
-    if not (isinstance(side_lengths, (tuple, list)) and len(side_lengths) == 4):
-        return "invalid"
+    if not _is_convex(shape):
+        return 'concave'
 
-    for n in side_lengths:
-        if n <= 0:
-            return "invalid"
+    if _is_disconnected(shape):
+        return 'disconnected'
 
-    angle_sum = sum (angles);
-    if angle_sum != 360:
-        return "disconnected"
+    ret_val = 'Error: unhandled exception'
 
-    is_normal = all(89.9 < a < 90.1 for a in angles)
+    is_homogenous = _is_homogenous(shape)
+    is_length_equiopposite = _is_length_equiopposite(shape)
 
-    is_homogenous = all(a == side_lengths[0] for a in side_lengths)
-
-    is_parallelogram = ((angles[0] == angles[2]) and
-                        (angles[1] == angles[3]))
-
-    is_length_equiopposite = ((side_lengths[0] == side_lengths[2]) and
-                              (side_lengths[1] == side_lengths[3]))
-
-    is_angle_equiopposite = ((angles[0] == angles[2]) or
-                             (angles[1] == angles[3]))
-
-    is_length_equiadjacent = (((side_lengths[0] == side_lengths[1]) and
-                               (side_lengths[2] == side_lengths[3])) or
-                              ((side_lengths[1] == side_lengths[2]) and
-                               (side_lengths[3] == side_lengths[0])))
-
-
-    ret_val = 'unhandled exception'
-
-    if is_parallelogram:
-        if is_normal:
+    if _is_parallelogram(shape):
+        if _is_normal(shape):
             if is_homogenous:
                 ret_val = "square"
             elif is_length_equiopposite:
                 ret_val = "rectangle"
         elif is_length_equiopposite:
-            ret_val = "rhombus"
+            if is_homogenous:
+                ret_val = "rhombus"
+            else:
+                ret_val = "parallelogram"
     else:
-        if is_angle_equiopposite and is_length_equiadjacent:
+        if _is_length_equiadjacent(shape):
             ret_val = "kite"
         else:
             ret_val = "trapezoid"
 
-    if Turtle.is_connected(side_lengths, angles):
-        return ret_val
-    else:
-        return "disconnected"
+    return ret_val

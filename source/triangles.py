@@ -1,8 +1,7 @@
 """
-:mod:`source.source1` -- Example source code
-============================================
+:mod: source.triangles
 
-The following example code determines if a set of 3 sides of a triangle is equilateral, scalene or iscoceles
+methods for determining the class of a triangle defined by its side lengths
 """
 
 def get_triangle_type(a=0, b=0, c=0):
@@ -22,18 +21,16 @@ def get_triangle_type(a=0, b=0, c=0):
     :rtype: str
     """
     if isinstance(a, (tuple, list)) and len(a) == 3:
-        c = a[2]
-        b = a[1]
-        a = a[0]
+        a, b, c = a[0], a[1], a[2]
 
     if isinstance(a, dict) and len(a.keys()) == 3:
         values = []
         for value in a.values():
             values.append(value)
-        a = values[0]
-        b = values[1]
-        c = values[2]
+        a, b, c = values[0], values[1], values[2]
 
+
+    # TODO: push to parent class
     if not (isinstance(a, (int, float)) and isinstance(b, (int, float)) and isinstance(c, (int, float))):
         return "invalid"
 
