@@ -95,7 +95,6 @@ class TestTurtle (TestCase):
     def test_turtle_walk_equilateral_polygons(self):
         turtle = Turtle()
         expected = [180, 360, 540, 720, 900, 1080, 1260]
-
         def build_polygon_angle_series (k):
             return map(lambda n: (n - 2) * 180, range(3, k))
 
@@ -104,6 +103,5 @@ class TestTurtle (TestCase):
         for angle_sum in build_polygon_angle_series(12):
             a = angle_sum / n
             polygon = {'sides': [1] * n, 'angles': [a] * n}
-            print polygon
             self.assertTrue(turtle.is_connected(polygon))
             n += 1

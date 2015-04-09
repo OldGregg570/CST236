@@ -161,7 +161,7 @@ Review the parameters and try out a few to better understand git revert
 Creating your first test
 ========================
 To ensure proper setup I have included a second test case that you may use as a guide
-for the remaining tests.
+for the remaining  tests.
 
 To execute open a command prompt and execute the following:
 
