@@ -15,7 +15,7 @@ class TestStaticMethods(TestCase):
         self.assertFalse(f_equal(10000, 9998.9, 1))
 
     def test_f_equal_actually_equal(self):
-        self.assertTrue(f_equal(10, 10, 2))
+        self.assertTrue(f_equal(8, 8, 2))
 
     def test_f_equal_off_by_tenth(self):
         self.assertTrue(f_equal(1.0, 1.1, 0.1))
