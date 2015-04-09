@@ -97,31 +97,6 @@ def get_quadrilateral_type(shape):
     """
     Determines the class of a quadrilateral defined by its sides and angles.
 
-    Quadrilateral classification tree (not entirely implemented):
-
-                  Quadrilateral
-                 /     |
-            Complex    |
-                       |
-                     Simple
-                   /   |
-            Concave    |
-                       |
-                     Convex - - - - - - - - - - -.
-                 _/    |    \__                   \
-              _/       |       \__                 \
-            /          |          \                 \
-        Kite        Cyclic      Trapezoid          (Kite)
-            \       /     \       /     \            |
-             \    /        \    /        \           |
-        Cyclic Kite      I. Trap.    Parallelogram   |
-               \            |      /      |    _____/
-                \           |    /        |  /
-                 \      Rectangle     Rhombus
-                  \    /   __________/
-                   \  |  /
-                   Square
-
     An even more in depth classification tree:
         www.cut-the-knot.org/Curriculum/Geometry/quadrilaterals1.gif
 
