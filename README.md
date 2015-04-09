@@ -1,2 +1,1 @@
-# cst236
-Class Materials for CST 236
+# Andrew Bragg's cst236 Repo
