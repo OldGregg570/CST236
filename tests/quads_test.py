@@ -39,6 +39,7 @@ GENERIC_TRAPEZOID = {'sides': [1, 0.4, 0.535, 0.565], 'angles': [75, 110, 135, 5
 
 DISCONNECTED = {'sides': [1, 2, 1, 1], 'angles': [90, 90, 90, 90]}
 
+
 class TestPrivateHelpers(TestCase):
     def test_is_normal(self):
         self.assertTrue(_is_normal(SQUARE))

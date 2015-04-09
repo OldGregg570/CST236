@@ -31,7 +31,7 @@ class Polygon ():
         :param a: first number
         :param b: second number
         :param t: threshold
-        :return:
+        :return: boolean
         """
         return round(abs(a - b), max(2, len(str(t)) - 2)) <= t
 
