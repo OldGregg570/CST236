@@ -1,6 +1,13 @@
 *.pyc
 *.html
 /.idea
+<<<<<<< HEAD
 /htmlcov
 /.coverage
 /doc/build
+=======
+/.idea/scopes
+/htmlcov
+/.coverage
+/doc/build
+>>>>>>> lab_1
