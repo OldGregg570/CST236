@@ -2,7 +2,7 @@ from source.AlertSystem import AlertSystem
 from source.AlertSystem import Event
 from source.Orc import Orc, OrcCommander
 from unittest import TestCase
-
+from mock import patch
 
 class TestAlertSystem(TestCase):
     def testBreached(self):
@@ -22,19 +22,24 @@ class TestAlertSystem(TestCase):
 
 
 class TestAlertFilters(TestCase):
-    def testAlertFiltersOrc(self):
+
+    @patch('source.AlertSystem.logging')
+    def testAlertFiltersOrc(self, mock_logging):
         """
         When diagnosing alert system issues, I want a way to isolate
         output from particular modules at certain levels so
         I don't have to sift through as much logging data
         """
         alert_sys = AlertSystem()
+        self.assertTrue(mock_logging.info.called)
+        self.assertFalse(mock_logging.warn.called)
+
         orc_ted = OrcCommander('Teddy')
         orc_charlie = Orc('Charlie')
 
         alert_sys.put(Event('starting game', None, 'info'))
 
-        event_a = Event('breach', orc_charlie, 'warning')
+        event_a = Event('breach', orc_charlie, 'warn')
         alert_sys.put(event_a)
 
         event_b = Event('retreat', orc_ted, 'info')

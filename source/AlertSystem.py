@@ -3,10 +3,15 @@ import logging
 
 
 class Event():
+    event_count = 0
+
     def __init__(self, message, source=None, level='info'):
         self._message = message
         self._source = source
         self._level = level
+        self._id = Event.event_count
+
+        Event.event_count += 1
 
     @property
     def message(self):
@@ -40,6 +45,7 @@ class AlertSystem():
     """
     units = 'Meters'
     def __init__(self, units='Meters'):
+        logging.info('Initializing alert system')
         self.options_displayed = False
         self.__alerts = Queue.Queue()
         AlertSystem.units = units
@@ -49,7 +55,9 @@ class AlertSystem():
         return self.options_displayed
 
     def put(self, event):
-        if 'X' == event.message:
+        if 'ENTer the Trees' == event._message:
+            self.kill_all_orcs()
+        elif 'X' == event.message:
             self.quit()
         elif '?' == event.message:
             self.display_options()
@@ -64,21 +72,25 @@ class AlertSystem():
         logging.info('exiting the game')
         self._log_dump()
 
+    def kill_all_orcs(self):
+        logging.info('killing all orcs')
+        self._log_dump()
+
     def display_options(self):
         logging.info('displaying options')
         self.options_displayed = True
 
     def _log_dump(self, filter_predicate=None):
+        logging.info('dumping Alert Queue ...')
         while not self.__alerts.empty():
             e = self.__alerts.get()
             if filter_predicate:
                 if filter_predicate(e):
                     if e.level == 'info':
-                        log = logging.info
-                    if e.level == 'warning':
-                        log = logging.warn
+                        logging.info(e.to_string())
+                    if e.level == 'warn':
+                        logging.warn(e.to_string())
 
-                    log(e.to_string())
 
 
 
