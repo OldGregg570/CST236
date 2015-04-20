@@ -54,7 +54,7 @@ def step_impl(context):
 
 @when('I input the city')
 def step_impl(context):
-    context.sys.add_city(City('test', 200, 200))
+    #context.sys.add_city(City('test', 200, 200))
     pass
 
 @then('the new city is saved to the file')
