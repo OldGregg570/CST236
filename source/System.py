@@ -22,6 +22,7 @@ class SpeedBenchmarkSystem():
         self.__speed_estimate = 0
         self.__network_speed = 300
         self.__hd_size = hd_size
+        self.__speed_relative_description = 'general'
 
         if filepath:
                 f = open(filepath, 'r')
@@ -31,8 +32,13 @@ class SpeedBenchmarkSystem():
 
         pass
 
-    def set_speed_estimate(self, estimate):
+    def add_city(self, city):
+        self.__cities.append(city)
+        self.rewrite_file()
+
+    def set_speed_estimate(self, estimate, relative='general'):
         self.__speed_estimate = estimate
+        self.__speed_relative_description = relative
 
     def network_is_faster(self):
         return self.__speed_estimate < self.__network_speed
@@ -50,3 +56,6 @@ class SpeedBenchmarkSystem():
 
     def get_speed_diff(self, city, speed, hd_size):
         return speed - self.__speed_estimate
+
+    def rewrite_file(self):
+        pass
