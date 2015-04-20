@@ -1,6 +1,3 @@
-"""
-Test for source.Polygon
-"""
 from source.AlertSystem import AlertSystem
 from source.AlertSystem import Event
 from source.Orc import Orc, OrcCommander
@@ -43,7 +40,7 @@ class TestAlertFilters(TestCase):
         event_b = Event('retreat', orc_ted, 'info')
         alert_sys.put(event_b)
 
-        alert_sys._log_dump(src_filter=type(Orc))
+        alert_sys._log_dump(lambda e: type(e) == Orc().__class__)
 
         self.assertIsNone(alert_sys.get())
         pass
@@ -66,7 +63,7 @@ class TestAlertFilters(TestCase):
         event_b = Event('retreat', orc_ted, 'info')
         alert_sys.put(event_b)
 
-        alert_sys._log_dump(src_filter=type(OrcCommander))
+        alert_sys._log_dump(lambda e: type(e) == OrcCommander().__class__)
 
         self.assertIsNone(alert_sys.get())
         pass
@@ -155,3 +152,4 @@ class TestAlertSystemExtraInfo(TestCase):
 
         self.assertAlmostEqual(orc_jimmy.get_velocity()[0], 0.999, 2)
         pass
+

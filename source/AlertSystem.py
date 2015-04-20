@@ -27,8 +27,8 @@ class Event():
             ret_val += ' from ' + str(self._source)
 
             if self._source.position and self._source.destination:
-                ret_val += '\n Pos:  ' + self._source.position
-                ret_val += '\n Dest: ' + self._source.destination
+                ret_val += '\n Pos:  ' + str(self._source.position) + ' ' + AlertSystem.units + ' units'
+                ret_val += '\n Dest: ' + str(self._source.destination) + ' ' + AlertSystem.units + ' units'
 
 
         return ret_val
@@ -38,12 +38,21 @@ class AlertSystem():
     """
     Alert system class
     """
-    def __init__(self):
+    units = 'Meters'
+    def __init__(self, units='Meters'):
+        self.options_displayed = False
         self.__alerts = Queue.Queue()
+        AlertSystem.units = units
+
+    @property
+    def options_displayed(self):
+        return self.options_displayed
 
     def put(self, event):
         if 'X' == event.message:
             self.quit()
+        elif '?' == event.message:
+            self.display_options()
         else:
             self.__alerts.put(event)
 
@@ -55,16 +64,21 @@ class AlertSystem():
         logging.info('exiting the game')
         self._log_dump()
 
-    def _log_dump(self, src_filter=None):
+    def display_options(self):
+        logging.info('displaying options')
+        self.options_displayed = True
+
+    def _log_dump(self, filter_predicate=None):
         while not self.__alerts.empty():
             e = self.__alerts.get()
-            if type(e.source) == src_filter:
-                if e.level == 'info':
-                    log = logging.info
-                if e.level == 'warning':
-                    log = logging.warn
+            if filter_predicate:
+                if filter_predicate(e):
+                    if e.level == 'info':
+                        log = logging.info
+                    if e.level == 'warning':
+                        log = logging.warn
 
-                log(e.to_string())
+                    log(e.to_string())
 
 
 
