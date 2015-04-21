@@ -8,8 +8,8 @@ Lab 2 Writeup
 	TDD gives the developer more control over what is being tested and in my opinion offers more flexibility for test cases.
 
 2. What is a mixin, what challenges can occur when testing them? What order are they initialized in
-	A mixin is an inheritable class type where multiple mixins can be inherited by one class. This lets us use multiple inheritance in python.
-	Mixins can be challenging to test because a mixin changes the class of an object, so one must keep a close eye on all of their object types.
+	A mixin is an inheritable type where multiple mixins can be inherited by one class. This lets us use multiple inheritance in python.
+	Mixins can be challenging to test because a mixin changes the class of an object, so one must keep a close eye on all of their object types one is mixing in.
 
 3. In python what does "super" do?
 	In python, super makes a call to the base class. super can be used to call a base class' inherited method from a child class.
