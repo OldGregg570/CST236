@@ -1,6 +1,10 @@
 import math
 
 class Orc():
+    """
+    An orc
+    TODO: inherit from Enemy base class
+    """
     orc_count = 0
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1, aggro=1):
         self._name = name
@@ -50,11 +54,17 @@ class Orc():
 
 
 class OrcRider(Orc):
+    """
+    An orc rider. Rides a mount
+    """
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1, aggro=1, rank=0):
         Orc.__init__(self, name, pos, dest, speed)
 
 
 class OrcCommander(OrcRider):
+    """
+    An orc commander. Can command other orcs
+    """
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1, aggro=1, rank=0):
         name = 'Commander ' + name
         Orc.__init__(self, name, pos, dest, speed)
@@ -66,31 +76,49 @@ class OrcCommander(OrcRider):
 
 
 class OrcGeneral(OrcRider):
+    """
+    An orc general. Can command other orcs
+    """
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1, aggro=1, rank=0):
         name = 'General ' + name
         Orc.__init__(self, name, pos, dest, speed)
 
 
 class OrcMedic(Orc):
+    """
+    An orc medic. Heals other orcs.
+    """
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1):
         Orc.__init__(self, name, pos, dest, speed)
 
 
 class OrcFighter(Orc):
+    """
+    An orc fighter. Fights other orcs.
+    """
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1):
         Orc.__init__(self, name, pos, dest, speed)
 
 
 class OrcKamakazi(OrcFighter):
+    """
+    An orc kamakazi fighter. Fights other orcs via suicide bombing.
+    """
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1):
         OrcFighter.__init__(self, name, pos, dest, speed)
 
 
 class OrcGrunt(OrcFighter):
+    """
+    An orc grunt. Fights other orcs with bats
+    """
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1):
         OrcFighter.__init__(self, name, pos, dest, speed)
 
 
 class OrcArtillery(OrcFighter):
+    """
+    An orc artillery unit. Fights other orcs with artillery
+    """
     def __init__(self, name='', pos=(0, 0), dest=(0, 0), speed=1):
         OrcFighter.__init__(self, name, pos, dest, speed)

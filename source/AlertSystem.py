@@ -3,9 +3,15 @@ import logging
 
 
 class Event():
+    """
+    An event to be added to the Alert Queue
+    """
     event_count = 0
 
     def __init__(self, message, source=None, level='info'):
+        """
+        Initialize this event with a source obj and a logging level
+        """
         self._message = message
         self._source = source
         self._level = level
@@ -26,6 +32,10 @@ class Event():
         return self._source
 
     def to_string(self):
+        """
+        Print this event as a string. If there is a src object, print it
+        and if the source obj has a position and a destination, print those
+        """
         ret_val = self._message
 
         if self._source:
@@ -55,6 +65,9 @@ class AlertSystem():
         return self.options_displayed
 
     def put(self, event):
+        """
+        add an event to the queue
+        """
         if 'ENTer the Trees' == event._message:
             self.kill_all_orcs()
         elif 'X' == event.message:
@@ -65,22 +78,38 @@ class AlertSystem():
             self.__alerts.put(event)
 
     def get(self):
+        """
+        Return an event from the queue
+        """
         if not self.__alerts.empty():
             return self.__alerts.get()
 
     def quit(self):
+        """
+        Quit the application from the event system
+        """
         logging.info('exiting the game')
         self._log_dump()
 
     def kill_all_orcs(self):
+        """
+        Remove all orcs from the orc list
+        """
         logging.info('killing all orcs')
         self._log_dump()
 
     def display_options(self):
+        """
+        Display the options
+        """
         logging.info('displaying options')
         self.options_displayed = True
 
     def _log_dump(self, filter_predicate=None):
+        """
+        Dump event queue to logger.
+        Filter by filter predicate passed in
+        """
         logging.info('dumping Alert Queue ...')
         while not self.__alerts.empty():
             e = self.__alerts.get()
