@@ -47,13 +47,12 @@ requirements, or code that has no reason for existing (not covered by the requir
 Bug Report
 ----------
 
-ISSUE Number: 0
-***************
+**ISSUE Number: 0**
 
-BRIEF:
+**BRIEF:**
     "Was that a question?" response to valid query
 
-Steps to reproduce:
+**Steps to reproduce:**
     >>> import Interface
     >>> i = Interface()
     >>> i.ask("What is your name?")
@@ -61,12 +60,12 @@ Steps to reproduce:
     >>> i.teach("computer")
     "Please ask question first"
 
-Comments:
+**Comments:**
     Expected output not to equal "Was that a question". Also, last_question is not being set
     as shown by the "Please ask question first" output. Looks like the problem lies in
     the Interface on the line "chr(0x3E)"
 
-Time Spent:
+**Time Spent:**
     3 hours
 
 
