@@ -8,8 +8,8 @@ log = logging.getLogger('nose2.plugins.traceability')
 
 
 class Tracer(Plugin):
-    configSection = 'helloworld'
-    commandLineSwitch = (None, 'hello-world', 'First plugin')
+    configSection = 'tracer'
+    commandLineSwitch = (None, 'trace', 'Req Tracer plugin')
 
     def __init__(self):
         print "running"
