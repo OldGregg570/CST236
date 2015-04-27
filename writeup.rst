@@ -41,9 +41,12 @@ For each bug you found in the source code enter a "Bug Request" in your write up
 this template. You should consider bugs to be not following the requirements, inaccurate
 requirements, or code that has no reason for existing (not covered by the requirements):
 
+#Bug Report
+
 ISSUE Number: 0
 
-BRIEF: "Was that a question?" response to valid query
+BRIEF:
+    "Was that a question?" response to valid query
 
 Steps to reproduce:
     >>> import Interface
@@ -53,10 +56,13 @@ Steps to reproduce:
     >>> i.teach("computer")
     "Please ask question first"
 
-Comments: Expected output not to equal "Was that a question". Also, last_question is not being set
-as shown by the "Pleas ask question first" output
+Comments:
+    Expected output not to equal "Was that a question". Also, last_question is not being set
+    as shown by the "Please ask question first" output. Looks like the problem lies in
+    the Interface on the line "chr(0x3E)"
 
-Time Spent: 3 hours
+Time Spent:
+    3 hours
 
 
 Question: This bug is pretty much causing all of the failing tests to fail. Do I report one bug for
