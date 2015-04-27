@@ -1,3 +1,6 @@
+Lab 3 Writeup
+-------------
+
 What are five examples of other testing(nose2) plugins that might be useful?
     Plugin that asserts image equality with an CV engine.
     Plugin that outputs a BDD feature file.
@@ -41,9 +44,11 @@ For each bug you found in the source code enter a "Bug Request" in your write up
 this template. You should consider bugs to be not following the requirements, inaccurate
 requirements, or code that has no reason for existing (not covered by the requirements):
 
-#Bug Report
+Bug Report
+----------
 
 ISSUE Number: 0
+***************
 
 BRIEF:
     "Was that a question?" response to valid query
