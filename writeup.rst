@@ -2,11 +2,11 @@ Lab 3 Writeup
 -------------
 
 What are five examples of other testing(nose2) plugins that might be useful?
-    Plugin that asserts image equality with an CV engine.
-    Plugin that outputs a BDD feature file.
-    Plugin that filters the tests that are to be run in some user-defined way.
-    Plugin that outputs test output to a file.
-    Plugin that outputs test info via a dynamic html page.
+   #. Plugin that asserts image equality with an CV engine.
+   #. Plugin that outputs a BDD feature file.
+   #. Plugin that filters the tests that are to be run in some user-defined way.
+   #. Plugin that outputs test output to a file.
+   #. Plugin that outputs test info via a dynamic html page.
 
 
 Do you plan to create any of these plugins for your term project?
@@ -16,21 +16,22 @@ What is the hardest part of this lab?
     The hardest part of this lab was understanding whether the test or the
     code was broken. In some places, it seemed ambiguous because the req would
     say to enter a query without a question mark at the end, but it still
-    called it a "question"
+    called it a "question". I think in most instances I just followed the req recklessly.
 
 Did the code fully and completely implement the requirements? Explain
     No. Some of the tests failed because the question mark character is set to ">" (chr(0x3E)
     and not chr(0x3F))
 
 Was the requirements complete? Explain
-    What is this question? Does this mean "Was there code implemented that was not covered by the req?"
+    Does this mean "Was there code implemented that was not covered by the req?"
     From this statement in the lab instructions "Remember from lecture, no matter how correct the
     code might look, the requirement is always the definitive answer." The answer could be thought of as
-    "Of course the requirements are complete. They are the de facto definitions of what the code should be.
-    That is why they are called 'requirements'"
+    "Of course the requirements are complete. They are the de facto definitions of what the code
+    should be. That is why they are called 'requirements'"
 
     All red-highlighted code in the coverage report looks like it is still based on the req, so the req
-    seems to be "complete" if our definition of "complete" is the same.
+    seems to be "complete" if our definition of "complete" is the same. Was this defined in lecture? I don't
+    seem to recall.
 
 Why are requirements tracing so important?
     Tracing requirements is important because it lets the developer exhaustively test code based on the
@@ -70,6 +71,10 @@ Bug Report
 
 
 Question: This bug is pretty much causing all of the failing tests to fail. Do I report one bug for
-every failing req? or one bug for every single actual code issue that exists?
-In this instance, I can't tell if other parts of the code are working because of the chr(0x3E) issue.
+every failing req? or one bug for every single actual code issue that exists? I hope for the latter, since
+the former would be horribly redundant. This is just scaring me because I can only find one bug doing this the former way.
+
+I can't tell if other parts of the code are working because of the chr(0x3E) issue.
 What were you expecting here?
+Also, what is "Time Spent" in the bug report? Time spent finding the bug? Writing the test that found the bug?
+Tracking the bug?
