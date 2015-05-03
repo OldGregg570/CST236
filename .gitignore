@@ -1,7 +1,3 @@
 *.pyc
 *.html
 /.idea
-/.idea/scopes
-/htmlcov
-/.coverage
-/doc/build
