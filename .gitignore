@@ -1,3 +1,5 @@
 *.pyc
 *.html
 /.idea
+/.coverage
+/htmlcov
