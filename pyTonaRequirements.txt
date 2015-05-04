@@ -67,3 +67,9 @@ Username shall be determined by the name of the currently logged in user.
 #0028 The system shall respond to the question "What is the <int> digit of the Fibonacci sequence?" with the correct number from the fibonnacci sequence if the number has been found
 
 #0029 If the system has not determined the requested digit of the Fibonacci sequence it will respond with A)"Thinking...", B)"One second" or C)"cool your jets" based on a randomly generated number (A is 60% chance, B is 30% chance, C is 10% chance)
+
+#0030 If the question asked is not a string, the system will raise an exception
+
+#0031 If there are too many floats in a query, the system will raise an exception
+
+#0032 If the user provides a correct answer before a question is called, the system will return 'Please ask a question first'

@@ -2,6 +2,7 @@ from unittest import TestCase
 from ReqTracer import requirements
 from mock import Mock, patch
 import mock
+from pyTona.answer_funcs import seq_finder
 from main import Interface
 import socket
 
@@ -10,6 +11,7 @@ import os
 
 QUESTION_MARK = chr(0x3F)
 
+FIB_Q = lambda n: "What is the {0} digit of the Fibonacci sequence?".format(n)
 
 class TestWhereAmI(TestCase):
     interface = Interface()
@@ -128,6 +130,38 @@ class WhoElseIsHere(TestCase):
         pass
 
 
+class TestMissingReqs(TestCase):
+    interface = Interface()
+
+    @requirements(['#0030'])
+    def test_non_string_query(self):
+        """
+        If the question asked is not a string, the system will raise an exception
+        """
+        with self.assertRaises(Exception):
+            self.interface.ask(42)
+        pass
+
+    @requirements(['#0031'])
+    def test_too_many_floats(self):
+        """
+        If there are too many floats in a query, the system will raise an exception
+        """
+        with self.assertRaises(Exception):
+            self.interface.ask("What is 4 4 feet in miles{0}".format(QUESTION_MARK))
+        pass
+
+    @requirements(['#0032'])
+    def test_correct_before_ask(self):
+        """
+        If the user provides a correct answer before a question is called, the system will
+        return 'Please ask a question first'
+        """
+        self.interface = Interface()
+        self.assertEqual("Please ask a question first", self.interface.correct("Test correction"))
+        pass
+
+
 class TestFibonacci(TestCase):
     interface = Interface()
     @requirements(['#0028'])
@@ -136,7 +170,6 @@ class TestFibonacci(TestCase):
         The system shall respond to the question "What is the <int> digit of the Fibonacci sequence?" with the correct
         number from the fibonnacci sequence if the number has been found
         """
-        FIB_Q = lambda n: "What is the {0} digit of the Fobonacci sequence?".format(n)
         self.assertEqual(self.interface.ask(FIB_Q(0)), 1)
         self.assertEqual(self.interface.ask(FIB_Q(1)), 1)
         self.assertEqual(self.interface.ask(FIB_Q(2)), 2)
@@ -145,27 +178,23 @@ class TestFibonacci(TestCase):
         self.assertEqual(self.interface.ask(FIB_Q(5)), 8)
         self.assertEqual(self.interface.ask(FIB_Q(6)), 13)
         self.assertEqual(self.interface.ask(FIB_Q(7)), 21)
-        pass
-
+    pass
 
     @requirements(['#0029'])
     def test_fib_fail(self):
         """
         If the system has not determined the requested digit of the Fibonacci sequence it will respond with
-            A)"Thinking...",
-            B)"One second" or
-            C)"cool your jets"
+        A)"Thinking...",
+        B)"One second" or
+        C)"cool your jets"
         based on a randomly generated number (A is 60% chance, B is 30% chance, C is 10% chance)
         """
-        FIB_Q = lambda n: "What is the {0} digit of the Fobonacci sequence?".format(n)
-
-        still_thinking = False
+        still_thinking = True
         answer = self.interface.ask(FIB_Q(10000000))
-        still_thinking |= answer == "Thinking..."
-        still_thinking |= answer == "One second"
-        still_thinking |= answer == "cool your jets"
+        still_thinking &= answer == "Thinking..."
+        still_thinking &= answer == "One second"
+        still_thinking &= answer == "cool your jets"
         self.assertFalse(still_thinking)
-
         for n in range(100):
             still_thinking = False
             answer = self.interface.ask(FIB_Q(10000000))
@@ -174,4 +203,3 @@ class TestFibonacci(TestCase):
             still_thinking |= answer == "cool your jets"
             self.assertTrue(still_thinking)
         pass
-
