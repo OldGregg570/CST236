@@ -1,5 +1,3 @@
-
-
 class RequirementTrace(object):
     req_text = ""
     def __init__(self, text):
@@ -21,7 +19,7 @@ def requirements(req_list):
 
     return wrapper
 
-with open('pyTonaRequirements.txt') as f:
+with open('solution_requirements.txt') as f:
     for line in f.readlines():
         if '#00' in line:
             req_id, desc = line.split(' ', 1)

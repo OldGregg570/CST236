@@ -21,11 +21,11 @@ class Tracer(Plugin):
                 f.writelines("REQ ID: {0}\n".format(id))
                 f.writelines("\tREQ:{0}".format(req.req_text))
 
-                if len(req.func_name) == 0:
-                    f.writelines("\t{{ REQUIREMENT NOT COVERED }}\n\n")
-                    self.uncovered_requirements.append(id)
-                else:
-                    f.writelines("\tCOVERED IN: {0}\n\n".format(req.func_name))
+                # if len(req.func_name) == 0:
+                #     f.writelines("\t{{ REQUIREMENT NOT COVERED }}\n\n")
+                #     self.uncovered_requirements.append(id)
+                # else:
+                f.writelines("\tCOVERED IN: {0}\n\n".format(req.func_name))
 
             l = len(ReqTracer.Requirements)
             f.writelines("{0} / {1} requirements covered ...\n".format(l - len(self.uncovered_requirements), l))

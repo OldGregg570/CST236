@@ -1,0 +1,56 @@
+Turtle Trace Features
+
+#0000 the turtle will provide a method to rotate it to an absolute angle
+
+#0001 the turtle will provide a method to rotate it by a relative angle
+
+#0002 the turtle will provide a method to translate it to an absolute position
+
+#0003 the turtle will provide a method to translate it by a relative distance
+
+#0004 the turtle will provide a method to toggle whether a path is drawn on the next move
+
+
+Geometry Solve Features
+
+#0005 the turtle will provide a method to return whether a path is "connected" or "disconnected"
+
+#0006 the turtle will provide a method to return whether a path is "concave" or "convex"
+
+#0007 the turtle will provide a method to return whether a path is "simple" or "complex"
+
+#0008 the turtle will provide a method to return the length of the polyline
+
+
+Bale Features (Source: http://www.thealmightyguru.com/Pointless/AnimalGroups.html)
+
+#0009 the system will be able to track multiple turtles to produce an aggregate path
+
+#0010 the system will provide a way to split the current turtle into two or more turtles with different initial orientations
+
+
+Render Features
+
+#0011 the turtle renderer will allow the path stored in the turtle to be output graphically to a canvas
+
+#0012 the turtle renderer will allow the path stored in the turtle to be output graphically to a bitmap
+
+#0013 the turtle renderer will allow a line weight to be specified as a float value [0.0, 1.0]
+
+#0014 the turtle renderer will allow a line color to be specified as a string or a hex value (#RRGGBB)
+
+
+
+Error Handling Features
+
+#0015 the turtle will raise an exception if an invalid angle or distance is input
+
+#0016 the turtle will raise an exception if an invalid graphic output option is chosen
+
+#0017 the turtle will raise an exception if an input moves a turtle out of range [RANGE_MIN, RANGE_MAX]
+
+
+Configuration Features
+
+#0018 the turtle can be configured to accept degree values or radian values. If no unit is specified during configuration, the turtle will interpret angle values in degrees by default
+
