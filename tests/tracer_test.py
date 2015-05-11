@@ -10,8 +10,8 @@ class TestTurtleTrace(TestCase):
         """
         the turtle will provide a method to rotate it to an absolute angle
         """
-        #self.turtle.rotate_to(90)
-        #self.assertEqual(90, self.turtle.angle)
+        self.turtle.rotate_to(90)
+        self.assertEqual(90, self.turtle.angle)
         pass
 
     @requirements(['#000001'])
@@ -19,7 +19,8 @@ class TestTurtleTrace(TestCase):
         """
         the turtle will provide a method to rotate it by a relative angle
         """
-        #00self.turtle.rotate_by()
+        self.turtle.rotate_to(30).rotate_by(90)
+        self.assertEqual(120, self.turtle.angle)
         pass
 
     @requirements(['#000002'])
@@ -27,6 +28,8 @@ class TestTurtleTrace(TestCase):
         """
         the turtle will provide a method to translate it to an absolute position
         """
+        self.turtle.translate_to((5, 5))
+        self.assertEqual((5, 5), self.turtle.position)
         pass
 
     @requirements(['#000003'])
@@ -34,13 +37,31 @@ class TestTurtleTrace(TestCase):
         """
         the turtle will provide a method to translate it by a relative distance
         """
+        self.turtle.translate_to((5, 5)).translate_by((2, 2))
+        self.assertEqual((7, 7), self.turtle.position)
         pass
 
     @requirements(['#000004'])
-    def test_pen_raise(self):
+    def test_mode_set(self):
         """
-        the turtle will provide a method to toggle whether a path is drawn on the next move
+        the turtle will provide a member to specify the implicit movement input mode (absolute / relative)
         """
+        self.turtle.rotate_to(0)
+        self.turtle.translate_to((0, 0))
+
+        self.turtle.mode = Turtle.ABSOLUTE_MODE
+        self.turtle.translate((5, 5))
+        self.turtle.rotate(90)
+
+        self.assertEqual((5, 5), self.turtle.position)
+        self.assertEqual(90, self.turtle.angle)
+
+        self.turtle.mode = Turtle.RELATIVE_MODE
+        self.turtle.translate((-3, -3))
+        self.turtle.rotate(-30)
+
+        self.assertEqual((2, 2), self.turtle.position)
+        self.assertEqual(60, self.turtle.angle)
         pass
 
 

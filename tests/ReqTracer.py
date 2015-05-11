@@ -21,6 +21,6 @@ def requirements(req_list):
 
 with open('solution_requirements.txt') as f:
     for line in f.readlines():
-        if '#00' in line:
+        if '#' in line:
             req_id, desc = line.split(' ', 1)
             Requirements[req_id] = RequirementTrace(desc)

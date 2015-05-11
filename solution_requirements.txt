@@ -8,7 +8,7 @@ Turtle Trace Features
 
 #000003 the turtle will provide a method to translate it by a relative distance
 
-#000004 the turtle will provide a method to toggle whether a path is drawn on the next move
+#000004 the turtle will provide a method to change the movement input mode (absolute / relative)
 
 
 Geometry Solve Features
