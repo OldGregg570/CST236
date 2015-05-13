@@ -198,7 +198,7 @@ def lc_recurse(directory):
         if not d == '.git':
             if not os.path.isdir(os.path.join(directory, d)):
                 with open(directory + '/' + d, 'r') as f:
-                    for line in f.readline():
+                    for line in f.readlines():
                             count += 1
             else:
                 count += lc_recurse(directory + '/' + d)

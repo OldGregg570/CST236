@@ -14,6 +14,7 @@ mul_time = None
 add_time = None
 fib_time = None
 cnt_time = None
+line_cnt = None
 
 class TestLabFive(TestCase):
     interface = Interface()
@@ -191,12 +192,12 @@ class TestLabFiveAdditionalReqs(TestCase):
     @requirements(['#0040'])
     def test_source_lines(self):
         """
-        The system shall respond to the question "How many lines are in this 1 project?" with a positive integer.
+        The system shall respond to the question "How many lines are in this 1 project?" with an integer > 5 million
         TODO: Find out why this throws an exception if there isnt a number in the question.
         """
         answer = self.interface.ask("How many lines are in this 1 project?")
         self.assertIsInstance(answer, int)
-        self.assertGreater(answer, 0)
+        self.assertGreater(answer, 5000000)
 
         pass
 
@@ -206,13 +207,14 @@ class TestLabFiveAdditionalReqs(TestCase):
         The system shall count the lines in less than three seconds
         """
         global cnt_time
+        global line_cnt
         start = time.clock()
         answer = self.interface.ask("How many lines are in this 1 project?")
         cnt_time = time.clock() - start
         self.assertLess(time.clock() - start, 3000)
         self.assertIsInstance(answer, int)
         self.assertGreater(answer, 0)
-
+        line_cnt = answer
         pass
 
 
@@ -224,10 +226,10 @@ class TestPerformanceReport(TestCase):
         print add_time
         print mul_time
         print exp_time
-        indeces = [1, 2, 3, 4, 5]
-        vals = [add_time, mul_time, exp_time, fib_time, cnt_time]
+        indeces = [1, 2]
+        vals = [line_cnt / 1000000.0, cnt_time]
 
-        LABELS = ["10 mil adds", "10 mil mults", "10 mil exponents", "Fibonacci", "Line Count"]
+        LABELS = ["Line Count (millions)", "Time"]
 
         plt.bar(indeces, vals, align='center')
         plt.xticks(indeces, LABELS)
