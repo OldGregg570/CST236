@@ -8,7 +8,7 @@
 
 #0004 If the system does not detect a question mark at end of the string it shall return "Was that a question?"
 
-A question mark is defined as ascii value 0x3F
+A question mark is defined as ASCII value 0x3F
 
 **Determining Answers**
 
@@ -42,7 +42,7 @@ A question mark is defined as ascii value 0x3F
 
 **Initial Answers Provided**
 
-#0017 The system shall respond to the question "What is <float> feet in miles" with the the float value divided by 5280 and append "miles" to the end of  the return.
+#0017 The system shall respond to the question "What is <float> feet in miles" with the the float value divided by 5280 and append " miles" to the end of  the return.
 
 #0019 The system shall respond to the question "Who invented Python" with "Guido Rossum(BDFL)"
 
@@ -52,9 +52,9 @@ A question mark is defined as ascii value 0x3F
 
 Username shall be determined by the name of the currently logged in user.
 
-#0022 The system shall respond to the question "Where am I" with the local git branch name or "unknown" if it can't be determined
+#0022 The system shall respond to the question "Where am I" with the local git branch name or "Unknown" if it can't be determined
 
-#0023 The system shall respond to the question "Where are you" with the URL for the git repo or "unknown" if it can't be determined
+#0023 The system shall respond to the question "Where are you" with the URL for the git repo or "Unknown" if it can't be determined
 
 #0024 The system shall respond to the question "Who else is here" with a list of users
 
@@ -68,8 +68,34 @@ Username shall be determined by the name of the currently logged in user.
 
 #0029 If the system has not determined the requested digit of the Fibonacci sequence it will respond with A)"Thinking...", B)"One second" or C)"cool your jets" based on a randomly generated number (A is 60% chance, B is 30% chance, C is 10% chance)
 
-#0030 If the question asked is not a string, the system will raise an exception
+**Performance Requirements**
 
-#0031 If there are too many floats in a query, the system will raise an exception
+#0030 The system shall be capable of storing at least 1,000,000 questions and answers
 
-#0032 If the user provides a correct answer before a question is called, the system will return 'Please ask a question first'
+#0031 The system shall store answers in under 5 ms
+
+#0032 The system shall be able to retrieve a response in under 5 ms 
+
+#0033 The system shall stop generating Fibonacci sequence numbers once it has identified the first 1,000 numbers
+
+#0034 The system shall generate the first 1,000 Fibonacci sequence numbers in under 60 seconds
+
+**Added Requirements (Thread Based)**
+
+#0035 The system shall respond to the question "How long does it take you to count to <number>?" with a positive float.
+
+#0036 The system shall respond to the question "How long does it take you to count to 10000001?" with "I can't count that high"
+
+#0036 The system shall be able to count to one million in less than 1 second
+
+#0037 The system shall be able to perform one million multiplication operations in less than 1 second
+
+#0038 The system shall be able to perform one million exponent operations in less than 1 second
+
+#0039 If the system is asked to perform over 10 million operations, it will respond with "I cant {operation} that high... sorry"
+
+**Added Requirements (FS access)**
+
+#0040 The system shall respond to the question "How many lines are in this project?" with a positive integer.
+
+#0041 The system shall count the lines in less than three seconds

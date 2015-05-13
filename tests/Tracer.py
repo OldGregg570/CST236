@@ -1,12 +1,12 @@
-
-
 class RequirementTrace(object):
     req_text = ""
+
     def __init__(self, text):
         self.req_text = text
         self.func_name = []
 
 Requirements = {}
+
 
 def requirements(req_list):
     def wrapper(func):

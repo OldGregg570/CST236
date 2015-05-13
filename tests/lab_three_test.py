@@ -1,10 +1,14 @@
 from unittest import TestCase
-from ReqTracer import requirements
-from main import Interface
 import getpass
+
+from tests.Tracer import requirements
+from main import Interface
+
+
 #from  plugins.tracer import Tracer
 
 QUESTION_MARK = chr(0x3F)
+
 
 class AcceptableAnswers(TestCase):
     interface = Interface()
@@ -224,6 +228,5 @@ class InitialAnswersProvided(TestCase):
         expected = "I'm afraid I can't do that {0}".format(getpass.getuser())
         self.assertEqual(self.interface.ask("Why don't you shutdown{0}".format(QUESTION_MARK)), expected)
         pass
-
 
 
