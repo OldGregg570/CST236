@@ -4,7 +4,7 @@ import time
 from tests.Tracer import requirements
 from main import Interface
 import pyTona.answer_funcs as funcs
-import pylab as plt
+#import pylab as plt
 
 
 Q = lambda n: "What is {0} in binary?".format(n)
@@ -218,24 +218,24 @@ class TestLabFiveAdditionalReqs(TestCase):
         pass
 
 
-class TestPerformanceReport(TestCase):
-    def test_performance_report(self):
-        """
-        The system shall count the lines in less than three seconds
-        """
-        print add_time
-        print mul_time
-        print exp_time
-        indeces = [1, 2]
-        vals = [line_cnt / 1000000.0, cnt_time]
-
-        LABELS = ["Line Count (millions)", "Time"]
-
-        plt.bar(indeces, vals, align='center')
-        plt.xticks(indeces, LABELS)
-        plt.show()
-
-        pass
+# class TestPerformanceReport(TestCase):
+#     def test_performance_report(self):
+#         """
+#         The system shall count the lines in less than three seconds
+#         """
+#         print add_time
+#         print mul_time
+#         print exp_time
+#         indeces = [1, 2]
+#         vals = [line_cnt / 1000000.0, cnt_time]
+#
+#         LABELS = ["Line Count (millions)", "Time"]
+#
+#         plt.bar(indeces, vals, align='center')
+#         plt.xticks(indeces, LABELS)
+#         plt.show()
+#
+#         pass
 
 
 
