@@ -34,9 +34,6 @@
 #. Click the "Ask" button
 #. Verify that text appears in the "Answer" text field
 
- The system shall have a default question/answer of "What is the answer to everything?": "42"
- The system shall display answers in the Answer Text Box
-
 
 **#0004: Answer to everything**
 
