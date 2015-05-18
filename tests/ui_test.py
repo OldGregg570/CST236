@@ -3,14 +3,21 @@ from unittest import TestCase
 from ReqTracer import requirements
 import time
 
+
 def before_each():
+    '''
+    Setup and initialization. Runs before each test
+    '''
     app = application.Application()
     app.start('./sharpTona.exe')
-    time.sleep(0.0625)
+    time.sleep(0.125)
     return app
 
 
 def after_each(app):
+    '''
+    Teardown. Happens after each test.
+    '''
     app.sharpTona.Close()
 
 
@@ -18,7 +25,7 @@ class LabSixTests(TestCase):
     @requirements(['#0001'])
     def test_window_title(self):
         """
-        #0001 The system window shall have a title of "SharpTona"
+        The system window shall have a title of "SharpTona"
         """
         app = before_each()
         self.assertIsNotNone(app.SharpTona)
