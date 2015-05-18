@@ -108,7 +108,7 @@
 #. Verify that the "Answer" text field contains the string "Was that a question?"
 
 
-**#0009: <Test Name>**
+**#0009: batman**
 
 *Setup*
 
@@ -123,3 +123,37 @@
 #. Click the "Teach" button
 #. Verify that the "Answer" text field is greyed out and uneditable
 #. Verify that the "Teach" and the "Correct" buttons are greyed out and unclickable
+
+
+**#0010: clickable teach button**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Input the string "Who am I?" in the "Question" text field
+#. Click the "Ask" button
+#. Verify that "I don't know please teach me" is in the "Answer" field
+#. Verify that the "Teach" button is clickable
+
+
+**#0011: teach answer**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Input the string "Who am I?" in the "Question" text field
+#. Click the "Ask" button
+#. Verify that "I don't know please teach me" is in the "Answer" field
+#. Replace the text with "Batman" in the "Answer" field
+#. Click the "Teach" button
+#. Verify that the "Answer" text field is greyed out and uneditable
+#. Verify that the "Teach" and the "Correct" buttons are greyed out and unclickable
+#. Input the string "Who am I?" in the "Question" text field
+#. Click the "Ask" button
+#. Verify that the "Answer" text field value is "Batman"
