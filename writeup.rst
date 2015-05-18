@@ -1,71 +1,135 @@
-Lab 5 Writeup
-=============
+#0001 The system window shall have a title of "SharpTona"
 
-#. What was the hardest part of this lab?
-    The hardest part of this lab was figuring out how to use Python globals. I have been using Python for three years now and
-    have never needed to use global. Just today I discovered that I have been using global wrong this whole time where I thought
-    I was using it correctly. Changing this up drastically sped up how fast I was able to get this lab complete.
+**Window Title**
 
-#. What is the difference between performance testing and performance measurement?
-    Performance testing involves testing to make sure a system reaches some minimum requirement for performance. It has more
-    to do with requirements. Performance measurement is closely tied to performance testing since one must measure performance
-    in order to test performance. Performance measurement doesn't have to be for testing purposes, however. For example, performance
-    measurements can be made for marketing reasons.
+*Setup*
 
-#. What new bugs did you encounter with the new code?
-    I couldn't get interface.__add_answer to work. Not entirely sure how to call a private method of a module, so I made my
-    own public add_answer function. This function was still much too slow to be able to test effectively, so I ended up commenting
-    that one out.
+#. Start the sharpTona.exe
 
-#. Did you mock anything to speed up performance testing? Do you see any issues with this?
-    No I did not. It obviously doesn't make sense to mock the interface you are speed testing, but I do see an instance in which it
-    would be wise to mock out side effects of some interface if you just want to isolate the testing of a specific operation within a
-    routine. I can't imagine mocking any of the performance tests for this lab though. Are there any portions that you would mock?
-    After thinking about this question a bit more I realize that it would speed up performance testing to mock time.sleep in
-    the fibonacci program. .04 * 1000 = 40 seconds, so it would speed up the runtime somewhere from 35 to 40 seconds probably.
-    In this instance, the 'side effect' I mention is the .sleep call. If we remove side effects, we can isolate the portions of the
-    program that we actually want to profile. (This is not the same as isolation testing)
+*Procedure*
+
+#. Verify that the title of the window reads "SharpTona"
 
 
-#. Generate at least 5 performance measurement value sets and graphs (these sets must be worthwhile)
-    see ~/CST236/plots
-    Notes on graphs: In the first set of graphs, I plotted three trials of comparing 10 million adds, mults, and exps.
-    I expected the bars heights to bee in add, mult, exp order, since that aligns with the expected performance of each operation.
-    This was not the case. I am not sure why this is the case. Do you know anything about the expected number of operations required for
-    arithmatic? Maybe this would be better if I were testing it with numpy. Any ideas?
-    In the second set of graphs, I am comparing the number of lines in the project with the ammount of time that it took to calculate the number of lines.
-    I am curious if this will change if I make the dir structure deeper. I am going to test that right now and add it to the plots folder.
-    As expected, it appears as if the runtime of linecount is O(n) where n is the number of lines. Once again, I am not sure where number of dirs fits in.
-    Testing that now... (it feels like I am doing stress testing for my IDE with all of these subdirs. I am at least thirty dirs deep! I think I'll push this to git like this and do some load testing for them too!)
-    Looks like the depth of the dirs doesn't have much to do with the runtime. I wonder if there is anything else I could isolate to test this.
-    Any ideas?
+#0002 The system shall provide labels "Question:" and "Answer:"
 
-#. Explain Load Testing, stress testing, endurance testing, spike testing configuration testing and isolation testing. How did you implement each of these?
-    Load Testing - Let's test under the expected load to make sure this solution will scale.
-        Example: twitter needs to simulate its servers at a superbowl half-time show scale (a time when a high volume of tweets might occur)
-        My Implementation: I would first do a lot of research to determine what that expected load is. Then I would test the expected load.
-    Stress Testing - Let's test the upper limits of our system.
-        Example: Fill the entire database and see how it performs. Send the maximum number of requests per second. Max things out.
-        My Implementation: This is close to edge-case testing. I would test all of my upper limits.
-    Endurance Testing - Let's test to make sure the system can run for a long time under expected load.
-        Example: In some systems, make sure it behaves the same on startup and while it has been running.
-        My Implementation: This is the type of test I would run on some remote server. I would also have a build queue so
-        the server is constantly building the solution. In this instance, I imagine the testing would take longer than the build process.
-        This is an interesting type of performance test because there is a very large delay between building and finding a bug.
-    Spike Testing - Let's test to make sure the system can handle large fluctuations in traffic.
-        Example: Make sure the system behaves well when traffic goes from low to high, or high to low.
-        My Implementation: Flucuate as quickly as possible. Test upwards spikes as well as downward ones.
-    Configuration Testing - Let's make sure there is no configuration of the system that will cause it to fail.
-        Example: Try configuring a system in such a way that it will break
-        My Implementation: Test on different operating systems, with different environment variables, and on a few different VMs. Test with different library versions and language versions.
-    Isolation Testing - Let's repeat a test execution that caused a system problem to see if it is the cause or if it is a side effect of some other component.
-        Example: Thread B doesn't work. It is running alongside Thread A. Let's see if Thread A is causing Thread B to not work by only running Thread B.
-        My Implementation: When I was testing answers that I added, I did some isolation testing with the super broad exception clause in main. I found out that a different
-        exception was being thrown than expected, but there was no handler for it, so it would always throw the same error, even if the error was caused by some other exception like
-        fs access. Isolation testing helped me resolve this issue.
+**Q and A labels**
 
-#. How long did this lab take to accomplish?
-    This lab took seven hours to complete. Three of those hours were spent trying to figure out why global wasn't working. And I also spent a couple hours
-    trying to resolve this GIT error (on git commit: "fatal: index file smaller than expected"). In the end, I had to delete
-    the branch and copy and paste everything back in. Fun stuff! I also ran into trouble with drone.io and the matplotlib requirement. It took over 20 minutes for the build to finish.
-    Not entirely sure why.
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Verify that there is a label that reads "Question:"
+#. Verify that there is a label that reads "Answer:"
+
+#0003 The system shall allow the user to enter a question and press the "Ask" button to receive an answer.
+
+**Asking a Question**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Input a question in the input box labeled "Question"
+#. Click the "Ask" button
+#. Verify that text appears in the "Answer" text field
+
+#0004 The system shall have a default question/answer of "What is the answer to everything?": "42"
+#0006 The system shall display answers in the Answer Text Box
+#0008 If the "Ask" button is pushed and the question is known the answer box shall display the answer and enable user input.
+**Answer to everything**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Input "What is the answer to everything?" into the "Question" text field.
+#. Click the "Ask" button
+#. Verify that the string "42" appears in the "Answer" text field
+#. Repeat the first three steps to verify that user input is enabled
+
+#0005 The system by default shall disable the answer box, "Teach" button and "Correct" button
+
+**Disabled fields**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Verify that the "Answer" text field is greyed out and uneditable
+#. Verify that the "Teach" and the "Correct" buttons are greyed out and unclickable
+
+
+#0007 If no question is asked when the "Ask" button is pushed then "Was that a question?" shall be displayed in the answer box
+**No question error**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Click the "Ask" button
+#. Verify that the "Answer" text field contains the string "Was that a question?"
+
+
+#0009 If the "Correct" button is pushed the system shall update the answer to the given question and disable the answer box, teach button and correct button
+**correct**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Input the string "What is the answer to everything?" in the "Question" text field
+#. Click the "Ask" button
+#. Type "Bacon and Cheese" into the "Answer" text field
+#. Click the "Correct" button
+#. Input the string "What is the answer to everything?" in the "Question" text field
+#. Click the "Ask" button
+#. Verify that the "Answer" field has a string value of "Bacon and cheese"
+
+#0010 If the "Ask button is pushed and the question is not known then the answer box shall display "I don't know please teach me." and the "Teach" button will be enabled
+**I am batman**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Input the string "Who am I?" in the "Question" text field
+#. Click the "Ask" button
+#. Verify that "I don't know please teach me" is in the "Answer" field
+#. Replace the text with "Batman" in the "Answer" field
+#. Click the "Teach" button
+#. Input the string "Who am I?" in the "Question" text field
+#. Click the "Ask" button
+#. Verify that "Batman" is in the "Answer" field
+
+#0011 If the "Teach" button is pushed the system shall store the answer to the given question and disable the answer box, teach button and correct button
+
+**<Test Name>**
+
+*Setup*
+
+#. Start the sharpTona.exe
+
+*Procedure*
+
+#. Input the string "Who am I?" in the "Question" text field
+#. Click the "Ask" button
+#. Verify that "I don't know please teach me" is in the "Answer" field
+#. Replace the text with "Batman" in the "Answer" field
+#. Click the "Teach" button
+#. Verify that the "Answer" text field is greyed out and uneditable
+#. Verify that the "Teach" and the "Correct" buttons are greyed out and unclickable
