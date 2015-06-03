@@ -2,7 +2,7 @@ from unittest import TestCase
 from Turtle import Turtle
 
 
-class TestTurtleTrace(TestCase):
+class TestTurtle(TestCase):
     def test_angles_positive(self):
         """
         the turtle will provide methods to get and set an angle. The angle value in the range of [0, 360)
@@ -21,6 +21,15 @@ class TestTurtleTrace(TestCase):
         turtle.angle = -30
         self.assertEqual(330, turtle.angle)
 
+    def test_angles_zero(self):
+        turtle = Turtle()
+        turtle.angle = 0
+        self.assertEqual(0, turtle.angle)
+
+    def test_angles_threesixty(self):
+        turtle = Turtle()
+        turtle.angle = 360
+        self.assertEqual(0, turtle.angle)
 
     def test_absolute_rotate(self):
         """
