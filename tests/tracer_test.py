@@ -3,7 +3,6 @@ from Tracer import Tracer
 
 
 class TestTracer(TestCase):
-
     def assertListOfPointsAlmostEqual(self, left, right):
         for p1, p2 in zip(left, right):
             self.assertAlmostEqual(p1[0], p2[0], 3)
