@@ -1,7 +1,8 @@
-Welcome to CST 236 Lab 7
+Welcome to CST 236 Lab 8
 ------------------------
 
-In this weeks lab you will be running a fuzz test script against SharpTona to find bugs
+In this lab you will create a sanity test that will import all python modules and
+instantiate any class and call any functions.
 
 
 .. note::
@@ -12,27 +13,24 @@ Grading
 *******
 
 +---------------------------------------+---------+
-| Each bug (10 points)                  | 70 pts  |
+| Properly Import/check each module     | 20 pts  |
++---------------------------------------+---------+
+| Properly create/check each class      | 20 pts  |
++---------------------------------------+---------+
+| Properly call/check each function     | 20 pts  |
++---------------------------------------+---------+
+| Scalability and accuracy of failures  | 10 pts  |
 +---------------------------------------+---------+
 | Analysis Questions                    | 30 pts  |
 +---------------------------------------+---------+
 | **Total**                             | 100 pts |
 +---------------------------------------+---------+
 
-Steps
-*****
-
-#. Pull new SharpTona.exe from blackboard
-#. Execute / modify fuzz_test_sharptona until all bugs are found
 
 Analysis Questions
 ******************
 
-#. What bugs did you find?
-#. What are the advantages and disadvantages of fuzz testing?
-#. What was the hardest part of this lab?
-#. How would you apply the concept of fuzz testing to testing a phone? a webpage? a library?
-#. How could throttling fuzz test scripts help with finding bugs?
-#. What is Delta Debugging and how would it help with fuzz testing?
-#. If steps 1-20 were to produce an error using delta debugging what are the steps that 
-   would arrive at steps 8, 12, 13, 19 and 20 being necessary to reproduce the error?
+#. How was this test useful?
+#. How did you report errors found by this test? How difficult would it be for a developer to debug these errors
+#. What other things would be useful to have in a sanity test?
+#. How would you sanity test a UI? A database interface? a webpage? a C# program?
