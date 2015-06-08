@@ -1,8 +1,0 @@
-nose2
-coverage
-mock
-sphinx
-docutils
-PIL
-nose2-cov==1.0a4
-autopy
