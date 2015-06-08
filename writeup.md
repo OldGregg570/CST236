@@ -20,12 +20,17 @@ Bug 4:
 
 Usually takes 10 seconds before it happens. Otherwise it is a "Bug 7"
 
-Other Workflow (cant recreate this)
-    ...
-    Ask: T7t12YiXnnm
-    Correct: nXb EWGHuJ?bLbgHbMTh2eZBBF3
-    Ask: LaaPAdNO yUuxSpLJDnhIWXEe?z
-    Teach: 0Mm5mUZpiWnJfFoO6pOhgOOgBUgFMb6Ma4W2K5sR85MBCljnvbgk
+    Other Workflow (cant recreate this)
+    
+        ...
+        
+        Ask: T7t12YiXnnm
+        
+        Correct: nXb EWGHuJ?bLbgHbMTh2eZBBF3
+        
+        Ask: LaaPAdNO yUuxSpLJDnhIWXEe?z
+        
+        Teach: 0Mm5mUZpiWnJfFoO6pOhgOOgBUgFMb6Ma4W2K5sR85MBCljnvbgk
 
 Bug 5: (On a fresh start)
 "Ask": "What is the answer to everything?"
